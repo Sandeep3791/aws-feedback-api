@@ -16,6 +16,12 @@ resource "aws_apigatewayv2_route" "post_feedback" {
   target    = "integrations/${aws_apigatewayv2_integration.lambda_integration.id}"
 }
 
+resource "aws_apigatewayv2_route" "get_feedback" {
+  api_id    = aws_apigatewayv2_api.feedback_api.id
+  route_key = "GET /feedback/{id}"
+  target    = "integrations/${aws_apigatewayv2_integration.lambda_integration.id}"
+}
+
 resource "aws_apigatewayv2_stage" "default_stage" {
   api_id      = aws_apigatewayv2_api.feedback_api.id
   name        = "$default"
